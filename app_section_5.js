@@ -123,5 +123,17 @@ greeter1.on('greet_data', function(data) {
     console.log('Someone greeted: ' + data);
 });
 
-
 greeter1.greet('Tony');
+
+/*
+*** Lecture 37: ES6 Template Strings (http://babeljs.io/)
+Please check jsconfig.json for ES6
+*/
+console.log('\n *** Lecture 37: ES6 Template Strings');
+
+var name = 'John Doe';
+var greet = 'Hello ' + name;
+var greet2 = `Hello ${ name }`;
+
+console.log(greet);
+console.log.greet2;
