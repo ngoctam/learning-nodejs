@@ -13,14 +13,20 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch app_section_4.js",
+            "name": "Launch app 4.js",
             "program": "${workspaceFolder}/app_section_4.js"
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch app_section_5.js",
+            "name": "Launch app 5.js",
             "program": "${workspaceFolder}/app_section_5.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch app 6.js",
+            "program": "${workspaceFolder}/app_section_6.js"
         }
     ]
 }

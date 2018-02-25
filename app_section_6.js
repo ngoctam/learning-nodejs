@@ -28,6 +28,7 @@ console.log(view);
 *** Lecture 49: Callbacks
 */
 console.log('\n *** Lecture 49: Callbacks');
+
 function greet(callback) {
     console.log('Hello !');
     var data = {
@@ -46,3 +47,26 @@ greet(function(data) {
     console.log('A different callback was invoked!');
     console.log(data.name);
 })
+
+/*
+*** Lecture 50: Files and fs
+*/
+console.log('\n *** Lecture 50: Files and fs');
+
+var fs = require('fs');
+
+// readFileSync -> read file and wait until get content
+var greet = fs.readFileSync(__dirname + '/greet.txt', 'utf8');
+console.log(greet);
+
+var greet2 = fs.readFile(__dirname + '/greet.txt', function(err, data){
+    // err -> error first callback
+    console.log(data);
+});
+
+var greet2 = fs.readFile(__dirname + '/greet.txt', 'utf8', function(err, data){
+    // err -> error first callback
+    console.log(data);
+});
+
+console.log('Done!');
