@@ -30,3 +30,65 @@ arr.push(function(){
 arr.forEach(function(item){
     item();
 })
+
+/*
+*** Lecture 33: The Node Event Emitter Part 1
+*/
+console.log('\n *** Lecture 33: The Node Event Emitter Part 1');
+
+var Emitter = require('./emitter');
+var emitr = new Emitter();
+emitr.on('greet', function() {
+    console.log('Somewhere, someone said hello...');
+});
+
+emitr.on('greet', function() {
+    console.log('A greet occurred...');
+});
+
+console.log('Hello !');
+emitr.emit('greet');
+
+/*
+*** Lecture 34: The Node Event Emitter Part 2
+*/
+console.log('\n *** Lecture 34: The Node Event Emitter Part 2');
+
+var Emitter = require('events');
+var eventConfig = require('./config').events;
+
+var emitr = new Emitter();
+emitr.on(eventConfig.GREET, function() {
+    console.log('Somewhere, someone said hello...');
+});
+
+emitr.on(eventConfig.GREET, function() {
+    console.log('A greet occurred...');
+});
+
+console.log('Hello !');
+emitr.emit(eventConfig.GREET);
+
+/*
+*** Lecture 35: Object.create and Prototypes
+*/
+console.log('\n *** Lecture 35: Object.create and Prototypes');
+
+var person = {
+    fistname: '',
+    lastname: '',
+    greet: function() {
+        return this.firtname + ' ' + this.lastname;
+    }
+}
+
+var john = Object.create(person);
+john.firtname = 'John';
+john.lastname = 'Doe';
+
+var jane = Object.create(person);
+jane.firtname = 'Jane';
+jane.lastname = 'Doe';
+
+console.log(john.greet());
+console.log(jane.greet());
