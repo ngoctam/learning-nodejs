@@ -153,3 +153,115 @@ var obj = {
 obj.greet();
 obj.greet.call({ name: 'Jane Doe' }); // .call will override this
 obj.greet.apply({ name: 'Jane Doe' }); // Same .call, only different with pass params via []
+
+/*
+*** Lecture 39: Inheriting From the Event Emitter part 2
+*/
+console.log('\n *** Lecture 39: Inheriting From the Event Emitter part 2');
+
+// Fix constructor in Lecture 36
+var EvenEmitter = require('events');
+var util = require('util');
+
+function Greetr() {
+    EvenEmitter.call(this);
+    this.greeting = 'Hello world !';
+}
+
+util.inherits(Greetr, EvenEmitter);
+
+Greetr.prototype.greet = function(data) {
+    console.log(this.greeting + ': ' + data);
+    this.emit('greet');
+    this.emit('greet_data', data);
+}
+
+var greeter1 = new Greetr();
+
+greeter1.on('greet', function() {
+    console.log('Someone greeted!');
+});
+
+greeter1.on('greet_data', function(data) {
+    console.log('Someone greeted: ' + data);
+});
+
+greeter1.greet('Tony');
+
+// New Example
+console.log('\n --- New Example:');
+var util = require('util');
+
+function Person() {
+	this.firstname = 'John';
+	this.lastname = 'Doe';
+}
+
+Person.prototype.greet = function() {
+	console.log('Hello ' + this.firstname + ' ' + this.lastname);
+}
+
+function Policeman() {
+	Person.call(this); // Remove this line to see problem
+	this.badgenumber = '1234';
+}
+
+util.inherits(Policeman, Person);
+var officer = new Policeman();
+officer.greet();
+
+/*
+*** Lecture 40: ES6 Classes
+*/
+console.log('\n *** Lecture 40: ES6 Classes');
+
+'use strict';
+
+class Person2 {
+    constructor(firstname, lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+    greet() {
+        console.log('Hello, ' + this.firstname + ' ' + this.lastname);
+    }
+}
+
+// function Person2(firstname, lastname) {
+//     this.firstname = firstname;
+//     this.lastname = lastname;
+// }
+// 
+// Person2.prototype.greet = function() {
+//     console.log('Hello, ' + this.firstname + ' ' + this.lastname);
+// }
+
+var john = new Person2('John', 'Doe');
+john.greet();
+
+var jane = new Person2('Jane', 'Doe');
+jane.greet();
+
+console.log(john.__proto__);
+console.log(jane.__proto__);
+console.log(john.__proto__ === jane.__proto__);
+
+/*
+*** Lecture 41: Inheriting From the Event Emitter part 3 (use ES6 Class)
+*/
+console.log('\n *** Lecture 41: Inheriting From the Event Emitter part 3 (use ES6 Class)');
+
+var Greetr = require('./greetr');
+
+var greeter1 = new Greetr();
+
+greeter1.on('greet', function() {
+    console.log('Someone greeted!');
+});
+
+greeter1.on('greet_data', function(data) {
+    console.log('Someone greeted: ' + data);
+});
+
+greeter1.greet('Tony');
