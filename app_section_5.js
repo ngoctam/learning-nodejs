@@ -137,3 +137,19 @@ var greet2 = `Hello ${ name }`;
 
 console.log(greet);
 console.log.greet2;
+
+/*
+*** Lecture 38: .call and .apply
+*/
+console.log('\n *** Lecture 38: .call and .apply');
+
+var obj = {
+    name: 'John Doe',
+    greet: function() {
+        console.log(`Hello ${ this.name }`);
+    }
+}
+
+obj.greet();
+obj.greet.call({ name: 'Jane Doe' }); // .call will override this
+obj.greet.apply({ name: 'Jane Doe' }); // Same .call, only different with pass params via []
