@@ -92,3 +92,36 @@ jane.lastname = 'Doe';
 
 console.log(john.greet());
 console.log(jane.greet());
+
+/*
+*** Lecture 36: Inheriting From the Event Emitter
+*/
+console.log('\n *** Lecture 36: Inheriting From the Event Emitter');
+
+var EvenEmitter = require('events');
+var util = require('util');
+
+function Greetr() {
+    this.greeting = 'Hello world !';
+}
+
+util.inherits(Greetr, EvenEmitter);
+
+Greetr.prototype.greet = function(data) {
+    console.log(this.greeting + ': ' + data);
+    this.emit('greet');
+    this.emit('greet_data', data);
+}
+
+var greeter1 = new Greetr();
+
+greeter1.on('greet', function() {
+    console.log('Someone greeted!');
+});
+
+greeter1.on('greet_data', function(data) {
+    console.log('Someone greeted: ' + data);
+});
+
+
+greeter1.greet('Tony');
