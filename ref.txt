@@ -2,3 +2,9 @@
     https://www.npmjs.com/
     npm init
     npm install moment --save
+
+    npm install jasmine-node --save-dev
+    npm install -g nodemon
+
+    nodemon app.js
+
