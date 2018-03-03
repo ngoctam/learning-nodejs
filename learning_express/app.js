@@ -34,11 +34,11 @@ app.post('/person', urlencodedParser, function (req, res) {
     console.log(req.body.lastname);
 });
 
-app.post('/personjson', jsonParser, function (req, res) {
-    res.send('Thank you for JSON data!');  
-    console.log(req.body.firstname);
-    console.log(req.body.lastname);
-});
+// app.post('/personjson', jsonParser, function (req, res) {
+//     res.send('Thank you for JSON data!');  
+//     console.log(req.body.firstname);
+//     console.log(req.body.lastname);
+// });
 
 // app.get('/', function (req, res) {
 //     console.log('Accepted from middleware !');
@@ -49,8 +49,21 @@ app.post('/personjson', jsonParser, function (req, res) {
 //     res.send('<html><head></head><body><h1>Person : ' + req.params.id +  '</h1></body></html>');
 // });
 
-app.get('/api', function (req, res) {
+// app.get('/api', function (req, res) {
+//     res.json( { firstname: 'John', lastname: 'Doe'} );
+// });
+
+app.get('/api/person/:id', function (req, res) {
+    // get that data from database
     res.json( { firstname: 'John', lastname: 'Doe'} );
+});
+
+app.post('/api/person', jsonParser, function (req, res) {
+    // save to the database
+});
+
+app.delete('/api/person/:id', function (req, res) {
+    // delete from the database
 });
 
 app.listen(port);

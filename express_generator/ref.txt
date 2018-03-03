@@ -1,0 +1,3 @@
+npm install express-generator -g
+express express_generator
+npm install
